@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
         res.write("</html>");
         res.end();
     }else{
-        res.setHeader("Content-Type","html/text");
+        res.setHeader("Content-Type","text/html");
         res.write("<html>");
         res.write("<body>");
         res.write("<h1>Home Page</h1>")
