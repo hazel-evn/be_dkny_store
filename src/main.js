@@ -1,7 +1,6 @@
-const express = require("express");
+import express from "express";
+import productRouter from "./routes/product"
 const app = express();
-const productRouter = require("./router/product");
-
 // Middleware
 app.use(express.json());
 

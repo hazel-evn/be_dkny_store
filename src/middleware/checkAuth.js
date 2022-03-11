@@ -1,4 +1,4 @@
-exports.checkAdmin = (req,res,next) => {
+export const checkAuth = (req,res,next) => {
     const isManager = true;
     if(isManager){
         console.log("Quản lý đây à");
