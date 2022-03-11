@@ -1,33 +1,12 @@
 import { Router } from "express";
+import { get, getAll, remove, create, putProduct } from "../controllers/product"
 import { checkAuth } from "../middleware/checkAuth";
 
 const router = Router();
 
-router.get("/products",checkAuth ,(req,res) => {
-    const products = [
-        {
-            id:1,
-            name: "Product 1"
-        },
-        {
-            id:2,
-            name: "Product 2"
-        }
-    ];
-    res.json(products);
-})
-router.post("/products",checkAuth ,(req,res) => {
-    const products = [
-        {
-            id:1,
-            name: "Product 1"
-        },
-        {
-            id:2,
-            name: "Product 2"
-        }
-    ];
-    products.push(req.body);
-    res.json(products);
-})
-module.exports = router;
+router.get("/products",checkAuth , getAll)
+router.post("/products",checkAuth, create )
+router.get("/products/:id", get)
+router.delete("/products/:id", remove)
+router.put("/products/:id", putProduct )
+export default router;
