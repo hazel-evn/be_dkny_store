@@ -1,7 +1,4 @@
-import mongoose  from "mongoose";
-const dtProduct = mongoose.Schema({ id: Number, name: String })
-// Khởi tạo 1 model mới
-const Products = mongoose.model('Product', dtProduct);
+import Products from "../models/products";
 
 export const getAll = async (req,res) => { // lấy ra tất cả sản phẩm
     try {
