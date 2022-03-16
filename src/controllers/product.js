@@ -1,4 +1,5 @@
 import Products from "../models/products";
+import slugify from "slugify";
 
 export const getAll = async (req,res) => { // lấy ra tất cả sản phẩm
     try {
@@ -21,6 +22,7 @@ export const get = async (req,res) => { // get a product
     }
 }
 export const create = async (req, res) => { // thêm sản phẩm
+    req.body.slug = slugify(req.body.name);
     try {
         const product = await Products(req.body).save();
         res.json(product);    
@@ -41,7 +43,6 @@ export const remove = async (req,res) => {
     }
 }
 export const putProduct = async (req,res) => {
-    console.log(req.body    );
     try {
         const detailProducts = await Products.findOneAndUpdate({_id: req.params.id},req.body,{new : true}).exec();
         res.json(detailProducts);
