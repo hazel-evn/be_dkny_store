@@ -5,5 +5,5 @@ const router = Router();
 
 router.post("/category", create);
 router.get("/category", getAll);
-router.get("/category/:id", read);
+router.get("/category/:slug", read);
 export default router;

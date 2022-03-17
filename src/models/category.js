@@ -5,6 +5,10 @@ const categorySchema = mongoose.Schema({
         type: String,
         trim: true,
         minLength: 5
+    },
+    slug:{
+        type: String,
+        trim: true
     }
 })
 
