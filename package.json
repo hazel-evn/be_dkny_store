@@ -9,8 +9,11 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongoose": "^6.2.6",
-    "slugify": "^1.6.5"
+    "react-hook-form": "^7.28.0",
+    "slugify": "^1.6.5",
+    "uuid": "^8.3.2"
   }
 }

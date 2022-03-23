@@ -1,9 +1,9 @@
-import Products from "../models/products";
+import Product from "../models/products";
 import slugify from "slugify";
 
 export const getAll = async (req,res) => { // lấy ra tất cả sản phẩm
     try {
-        const products = await Products.find().exec();
+        const products = await Product.find().exec();
         res.json(products);
     } catch (error) {
         res.status(400).json({
@@ -13,7 +13,7 @@ export const getAll = async (req,res) => { // lấy ra tất cả sản phẩm
 }
 export const get = async (req,res) => { // get a product
     try {
-        const detailProducts = await Products.findOne({_id: req.params.id}).exec();
+        const detailProducts = await Product.findOne({_id: req.params.id}).exec();
         res.json(detailProducts);
     } catch (error) {
         res.status(400).json({
@@ -24,7 +24,7 @@ export const get = async (req,res) => { // get a product
 export const create = async (req, res) => { // thêm sản phẩm
     req.body.slug = slugify(req.body.name);
     try {
-        const product = await Products(req.body).save();
+        const product = await Product(req.body).save();
         res.json(product);    
     } catch (error) {
         res.status(400).json({
@@ -34,7 +34,7 @@ export const create = async (req, res) => { // thêm sản phẩm
 }
 export const remove = async (req,res) => {
     try {
-        const detailProducts = await Products.findOneAndDelete({_id: req.params.id}).exec();
+        const detailProducts = await Product.findOneAndDelete({_id: req.params.id}).exec();
         res.json(detailProducts);
     } catch (error) {
         res.status(400).json({
@@ -44,7 +44,7 @@ export const remove = async (req,res) => {
 }
 export const putProduct = async (req,res) => {
     try {
-        const detailProducts = await Products.findOneAndUpdate({_id: req.params.id},req.body,{new : true}).exec();
+        const detailProducts = await Product.findOneAndUpdate({_id: req.params.id},req.body,{new : true}).exec();
         res.json(detailProducts);
     } catch (error) {
         res.status(400).json({
