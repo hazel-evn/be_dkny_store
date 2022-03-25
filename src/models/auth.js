@@ -30,8 +30,9 @@ const authSchema = new Schema({
         type: String
     }  
 }, {timestamps: true});
-// mã hóa mật khẩu
+
 authSchema.methods = {
+    // mã hóa mật khẩu
     encryptPassword(password){
         if(!password) return;
         try {
@@ -39,7 +40,12 @@ authSchema.methods = {
         } catch (error) {
             console.log(error);
         }
+    },
+    // check mật khẩu khi login
+    authenticate(password){
+        return this.password == this.encryptPassword(password);
     }
+
 }
 
 authSchema.pre("save", async function save(next){
