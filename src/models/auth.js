@@ -1,6 +1,6 @@
 import mongoose,{ Schema } from "mongoose";
 import { createHmac } from "crypto";
-import { v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const validateEmail = (email) => {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -25,6 +25,10 @@ const authSchema = new Schema({
     password:{
         type: String,
         required: true
+    },
+    role:{
+        type: Number,
+        default: 0
     },
     salt: {
         type: String

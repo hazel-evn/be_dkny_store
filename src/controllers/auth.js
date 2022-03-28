@@ -6,13 +6,13 @@ export const signup = async (req, res) => {
         const { username, email, password } = req.body;
         const existUser = await User.findOne({ email }).exec();
         if(existUser){
-            res.json({
+            return res.status(400).json({
                 message: "Tài khoản đã tồn tại, vui lòng đăng ký lại"
             })
         }
         // đăng ký
         const user = await new User({username, email, password}).save();
-        res.json({
+        return res.json({
             user: {
                 id: user._id,
                 username: user.username,
@@ -28,19 +28,18 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
     const { email , password } = req.body;
-    console.log(req.body);
     const users = await User.findOne({email}).exec();
     if(!users){
-        res.status(401).json({
+        res.status(400).json({
             message: "Không tồn tại user"
         })
     }
     if(!users.authenticate(password)){
-        res.status(401).json({
+        res.status(400).json({
             message: "Sai mật khẩu, vui lòng nhập lại"
         })
     }
-    const token = jwt.sign({email}, "hihi", {expiresIn: 60 * 60})
+    const token = jwt.sign({_id: users._id}, "hihi", {expiresIn: 60 * 60})
     res.json({
         users: {
             token,
@@ -49,4 +48,14 @@ export const signin = async (req, res) => {
             name: users.username
         }
     })
+}
+export const getAll = async (req,res) => { // lấy ra tất cả tài khoản
+    try {
+        const users = await User.find().exec();
+        res.json(users);
+    } catch (error) {
+        res.status(400).json({
+            message: "Không tìm thấy tài khoản"
+        })
+    }
 }
