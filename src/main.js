@@ -16,9 +16,9 @@ app.use("/api", authRouter);
 mongoose.connect("mongodb://localhost:27017/nodejs")
     .then(() => console.log("Connect database thanh cong"));
 // Connect
-const PORT = 8000;
+const PORT = 4000;
 app.listen(PORT, () => {
-    console.log("Server đang chạy ở cổng "+PORT);
+    console.log("Server đang chạy ở cổng " + PORT);
 })
 
 

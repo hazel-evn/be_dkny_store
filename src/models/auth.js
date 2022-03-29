@@ -1,4 +1,4 @@
-import mongoose,{ Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { createHmac } from "crypto";
 import { v4 as uuidv4 } from "uuid";
 
@@ -8,7 +8,7 @@ const validateEmail = (email) => {
 };
 
 const authSchema = new Schema({
-    email:{
+    email: {
         type: String,
         trim: true,
         lowercase: true,
@@ -20,39 +20,41 @@ const authSchema = new Schema({
     username: {
         type: String,
         required: true,
-        minlength: 5
     },
-    password:{
+    password: {
         type: String,
         required: true
     },
-    role:{
+    role: {
         type: Number,
         default: 0
     },
     salt: {
         type: String
-    }  
-}, {timestamps: true});
+    }
+}, { timestamps: true });
 
 authSchema.methods = {
+
+    // check mật khẩu khi login
+    authenticate(password) {
+        return this.password == this.encryptPassword(password);
+    },
+
     // mã hóa mật khẩu
-    encryptPassword(password){
-        if(!password) return;
+    encryptPassword(password) {
+        if (!password) return;
         try {
             return createHmac("sha256", this.salt).update(password).digest("hex");
         } catch (error) {
             console.log(error);
         }
-    },
-    // check mật khẩu khi login
-    authenticate(password){
-        return this.password == this.encryptPassword(password);
     }
+
 
 }
 
-authSchema.pre("save", async function save(next){
+authSchema.pre("save", function (next) {
     try {
         this.salt = uuidv4();
         this.password = this.encryptPassword(this.password);
@@ -62,4 +64,4 @@ authSchema.pre("save", async function save(next){
     }
 })
 
-export default mongoose.model("user",authSchema);
+export default mongoose.model("user", authSchema);
