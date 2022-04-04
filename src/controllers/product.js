@@ -51,4 +51,5 @@ export const putProduct = async (req, res) => {
             message: "Không tìm thấy sản phẩm"
         })
     }
-}
+};
+
