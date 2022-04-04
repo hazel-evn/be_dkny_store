@@ -20,6 +20,7 @@ const productSchema = mongoose.Schema({
     category:{
         type: ObjectId,
         ref:"Category"
-    }
+    },
 },{ timestamps: true })
+productSchema.index({"$**":'text'});
 export default mongoose.model('Product',productSchema);
