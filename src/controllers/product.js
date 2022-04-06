@@ -13,8 +13,17 @@ export const create = async (req, res) => { // thêm sản phẩm
     }
 }
 export const getAll = async (req, res) => { // lấy ra tất cả sản phẩm
+    const perPagePre = 20;
+    const perPage = req.query.perPage ? parseInt(req.query.perPage) : perPagePre;
+    const page = req.query.page ? parseInt(req.query.page) : 1;
+    const skip = ( page - 1 ) * perPage;
+
     try {
-        const products = await Product.find().exec();
+        const products = await Promise.allSettled([
+            Product.find().skip(skip).limit(perPage).exec(),
+            Product.countDocuments().exec()
+        ])
+        console.log(products);
         res.json(products);
     } catch (error) {
         res.status(400).json({
