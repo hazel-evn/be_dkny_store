@@ -27,28 +27,35 @@ export const signup = async (req, res) => {
 }
 
 export const signin = async (req, res) => {
-    const { email, password } = req.body;
-    const users = await User.findOne({ email }).exec();
-    if (!users) {
-        return res.status(400).json({
-            message: "Không tồn tại user"
-        })
-    }
-    if (!users.authenticate(password)) {
-        return res.status(400).json({
-            message: "Sai mật khẩu, vui lòng nhập lại"
-        })
-    }
-    const token = jwt.sign({ _id: users._id }, "hihi", { expiresIn: 60 * 60 })
-    return res.json({
-        token,
-        user: {
-            _id: users._id,
-            email: users.email,
-            name: users.username,
-            role: users.role
+    try {
+        const { email, password } = req.body;
+        const users = await User.findOne({ email }).exec();
+        if (!users) {
+            return res.status(400).json({
+                message: "Không tồn tại user"
+            })
         }
-    })
+        if (!users.authenticate(password)) {
+            return res.status(400).json({
+                message: "Sai mật khẩu, vui lòng nhập lại"
+            })
+        }
+        const token = jwt.sign({ _id: users._id }, "hihi", { expiresIn: 60 * 60 })
+        return res.json({
+                token,
+                user:{
+                   _id: users._id,
+                    email: users.email,
+                    name: users.username,
+                    role: users.role 
+                }
+                
+            })   
+    } catch (error) {
+        return res.status(400).json({
+            message: "Sai tài khoản hoặc mật khẩu"
+        })
+    }   
 }
 export const getAll = async (req, res) => { // lấy ra tất cả tài khoản
     try {

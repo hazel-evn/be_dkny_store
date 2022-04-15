@@ -19,7 +19,16 @@ export const requiredSignin = expressJWT({
 
 export const isAuth = (req, res, next) => {
     const user = req.profile._id == req.auth._id;
-    if (!user) {
+        if(process.browser) {
+            const cookieChecked = getCookie('token')
+            if(cookieChecked){
+                if(localStorage.getItem('user')){
+                    return JSON.parse(localStorage.getItem('user'))
+                }else{
+                    return false;
+                }
+            }
+        } else if (!user) {
         return res.status(402).json({
             message: "Bạn không được phép truy cập"
         })

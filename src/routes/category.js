@@ -7,7 +7,7 @@ const router = Router();
 
 router.post("/categories/:userId", requiredSignin, isAuth, isAdmin, create);
 router.get("/categories", getAll);
-router.get("/categories/:slug", read);
+router.get("/categories/:name", read);
 
 
 router.param("userId", userById);

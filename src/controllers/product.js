@@ -23,7 +23,6 @@ export const getAll = async (req, res) => { // lấy ra tất cả sản phẩm
             Product.find().skip(skip).limit(perPage).exec(),
             Product.countDocuments().exec()
         ])
-        console.log(products);
         res.json(products);
     } catch (error) {
         res.status(400).json({

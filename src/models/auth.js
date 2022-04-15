@@ -40,7 +40,6 @@ authSchema.methods = {
     authenticate(password) {
         return this.password == this.encryptPassword(password);
     },
-
     // mã hóa mật khẩu
     encryptPassword(password) {
         if (!password) return;
@@ -50,8 +49,6 @@ authSchema.methods = {
             console.log(error);
         }
     }
-
-
 }
 
 authSchema.pre("save", function (next) {
