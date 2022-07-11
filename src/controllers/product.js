@@ -1,4 +1,4 @@
-import Product from "../models/products";
+import Product from "../models/products.js";
 import slugify from "slugify";
 
 export const create = async (req, res) => { // thêm sản phẩm

@@ -1,5 +1,5 @@
-import categorySchema from "../models/category";
-import Product from "../models/products";
+import categorySchema from "../models/category.js";
+import Product from "../models/products.js";
 import slugify from "slugify";
 
 export const create = async (req,res) => {
