@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { get, getAll, remove, create, putProduct } from "../controllers/product";
-import { userById } from "../controllers/user";
-import { checkAuth, isAdmin, isAuth, requiredSignin } from "../middleware/checkAuth";
+import { get, getAll, remove, create, putProduct } from "../controllers/product.js";
+import { userById } from "../controllers/user.js";
+import { checkAuth, isAdmin, isAuth, requiredSignin } from "../middleware/checkAuth.js";
 
 const router = Router();
 

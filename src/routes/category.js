@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { create, getAll, read } from "../controllers/category";
-import { userById } from "../controllers/user";
-import { isAdmin, isAuth, requiredSignin } from "../middleware/checkAuth";
+import { create, getAll, read } from "../controllers/category.js";
+import { userById } from "../controllers/user.js";
+import { isAdmin, isAuth, requiredSignin } from "../middleware/checkAuth.js";
 
 const router = Router();
 
