@@ -16,10 +16,7 @@ app.use("/api", authRouter);
 app.use("/api", searchRouter);
 
 // Connect Database
-mongoose.connect("mongodb://localhost:27017/nodejs", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect("mongodb://localhost:27017/nodejs")
     .then(() => console.log("Connect database thanh cong"));
 // Connect
 const PORT = 3333;
