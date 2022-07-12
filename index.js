@@ -16,7 +16,7 @@ app.use("/api", authRouter);
 app.use("/api", searchRouter);
 
 // Connect Database
-mongoose.connect("mongodb://localhost:27017/nodejs")
+mongoose.connect("mongodb+srv://vasloc202:Locva1102@cluster0.rhzkh.mongodb.net/nodejs")
     .then(() => console.log("Connect database thanh cong"));
 // Connect
 const PORT = 1230;
