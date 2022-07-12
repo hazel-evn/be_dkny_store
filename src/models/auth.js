@@ -1,4 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+
+
 import { createHmac } from "crypto";
 import { v4 as uuidv4 } from "uuid";
 
@@ -7,7 +9,7 @@ const validateEmail = (email) => {
     return re.test(email)
 };
 
-const authSchema = new Schema({
+const authSchema = mongoose.Schema({
     email: {
         type: String,
         trim: true,

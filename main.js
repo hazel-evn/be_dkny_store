@@ -1,8 +1,8 @@
 import express from "express";
-import productRouter from "./routes/product.js";
-import categoryRouter from "./routes/category.js";
-import authRouter from "./routes/auth.js";
-import searchRouter from "./routes/search.js";
+import productRouter from "./src/routes/product.js";
+import categoryRouter from "./src/routes/category.js";
+import authRouter from "./src/routes/auth.js";
+import searchRouter from "./src/routes/search.js";
 import mongoose from "mongoose";
 import cors from "cors";
 const app = express();
@@ -19,7 +19,7 @@ app.use("/api", searchRouter);
 mongoose.connect("mongodb://localhost:27017/nodejs")
     .then(() => console.log("Connect database thanh cong"));
 // Connect
-const PORT = 3333;
+const PORT = 1230;
 app.listen(PORT, () => {
     console.log("Server đang chạy ở cổng " + PORT);
 })

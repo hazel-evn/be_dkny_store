@@ -1,6 +1,13 @@
 {
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
-    "start": "nodemon ./src/main.js --exec babel-node -e js"
+    "start": "node main.js --exec babel-node -e js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
