@@ -1,14 +1,12 @@
 import { Router } from "express";
-import { create, getAll, read } from "../controllers/category.js";
-import { userById } from "../controllers/user.js";
-import { isAdmin, isAuth, requiredSignin } from "../middleware/checkAuth.js";
+import { create, getAll, read, remove } from "../controllers/category.js";
+import { isAdmin, isAuth } from "../middleware/checkAuth.js";
 
 const router = Router();
 
-router.post("/categories/:userId", requiredSignin, isAuth, isAdmin, create);
+router.post("/categories", isAuth, isAdmin, create);
 router.get("/categories", getAll);
 router.get("/categories/:name", read);
+router.delete("/categories/:id", isAdmin, remove);
 
-
-router.param("userId", userById);
 export default router;
